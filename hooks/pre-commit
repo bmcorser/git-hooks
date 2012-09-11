@@ -1,0 +1,11 @@
+#!/bin/sh
+pyflakes $(git diff --cached --name-only)
+if [ $? = 1 ] ; then
+    echo "
+===============================================================================
+ pyflakes has linted your commit and found the errors displayed above, please
+ check your syntax or if you are quite sure you want to commit, use:
+    git commit --no-verify
+"
+exit 1
+fi
